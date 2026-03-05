@@ -1,0 +1,233 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 214 32% 91%;
+
+    --card: 222 35% 9%;
+    --card-foreground: 214 32% 91%;
+    --card-alt: 222 30% 13%;
+
+    --popover: 222 35% 9%;
+    --popover-foreground: 214 32% 91%;
+
+    --primary: 24 95% 53%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 25% 10%;
+    --secondary-foreground: 215 20% 65%;
+
+    --muted: 222 15% 16%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 24 95% 53%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 48 96% 53%;
+    --warning-foreground: 0 0% 0%;
+
+    --orange: 24 95% 53%;
+    --orange-foreground: 0 0% 0%;
+
+    --gold: 43 96% 56%;
+    --gold-foreground: 222 47% 6%;
+
+    --border: 222 15% 12%;
+    --input: 222 15% 12%;
+    --ring: 24 95% 53%;
+
+    --radius: 0.75rem;
+
+    --glass-bg: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.07);
+    --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --glass-blur: blur(20px);
+
+    --glow-primary: 0 0 24px rgba(249, 115, 22, 0.15);
+    --glow-accent: 0 0 60px rgba(249, 115, 22, 0.1);
+
+    --sidebar-background: 222 40% 7%;
+    --sidebar-foreground: 215 20% 65%;
+    --sidebar-primary: 24 95% 53%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 25% 10%;
+    --sidebar-accent-foreground: 214 32% 91%;
+    --sidebar-border: 222 15% 12%;
+    --sidebar-ring: 24 95% 53%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+  }
+}
+
+@layer components {
+  .font-mono-num {
+    font-family: 'Space Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius);
+  }
+
+  .glass-card-elevated {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: var(--glass-shadow), var(--glow-primary);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-radius: var(--radius);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    transition: all 0.2s ease;
+  }
+
+  .glass-input:focus {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
+  }
+
+  .glow-button {
+    background: linear-gradient(135deg, hsl(24, 95%, 53%), hsl(20, 90%, 42%));
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3), 0 0 40px rgba(249, 115, 22, 0.1);
+    transition: all 0.3s ease;
+    color: hsl(222, 47%, 6%);
+  }
+
+  .glow-button:hover {
+    box-shadow: 0 6px 25px rgba(249, 115, 22, 0.4), 0 0 60px rgba(249, 115, 22, 0.15);
+    transform: translateY(-1px);
+  }
+
+  .glow-button:active {
+    transform: translateY(0);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(24, 95%, 53%), hsl(43, 96%, 56%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-glass {
+    background: rgba(8, 13, 26, 0.92);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+
+  .score-ring {
+    filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.4));
+  }
+
+  .progress-glow {
+    box-shadow: 0 0 10px rgba(249, 115, 22, 0.4);
+  }
+
+  /* QCM option styles */
+  .qcm-opt {
+    @apply flex-1 py-3 px-3 rounded-xl text-sm font-semibold border-2 cursor-pointer transition-all text-center;
+    border-color: hsl(var(--border));
+    background: var(--glass-bg);
+    color: hsl(var(--muted-foreground));
+  }
+  .qcm-opt:hover {
+    border-color: rgba(249, 115, 22, 0.2);
+    color: hsl(var(--foreground));
+  }
+  .qcm-opt.active {
+    background: linear-gradient(135deg, hsl(24, 95%, 53%), hsl(20, 90%, 42%));
+    color: hsl(222, 47%, 6%);
+    border-color: transparent;
+  }
+  .qcm-opt.active-success {
+    background: rgba(34, 197, 94, 0.15);
+    color: hsl(var(--success));
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+  .qcm-opt.active-danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: hsl(var(--destructive));
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+
+  /* Chip styles */
+  .chip {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold;
+    background: rgba(249, 115, 22, 0.15);
+    color: hsl(var(--primary));
+    border: 1px solid rgba(249, 115, 22, 0.25);
+  }
+  .chip-success {
+    background: rgba(34, 197, 94, 0.12);
+    color: hsl(var(--success));
+    border-color: rgba(34, 197, 94, 0.2);
+  }
+  .chip-danger {
+    background: rgba(239, 68, 68, 0.12);
+    color: hsl(var(--destructive));
+    border-color: rgba(239, 68, 68, 0.2);
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .anim-fadeup { animation: fadeUp 0.5s ease both; }
+  .anim-fadeup-1 { animation: fadeUp 0.5s 0.08s ease both; }
+  .anim-fadeup-2 { animation: fadeUp 0.5s 0.16s ease both; }
+  .anim-fadeup-3 { animation: fadeUp 0.5s 0.24s ease both; }
+  .anim-fadeup-4 { animation: fadeUp 0.5s 0.32s ease both; }
+
+  /* Page enter animation */
+  .page-enter {
+    animation: pageEnter 0.25s ease-out both;
+  }
+
+  @keyframes pageEnter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
