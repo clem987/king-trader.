@@ -2,20 +2,18 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
-// Prefer the ANON key name from the docs, but fall back to the older PUBLISHABLE_KEY name if present
-const SUPABASE_ANON_KEY =
-  import.meta.env.VITE_SUPABASE_ANON_KEY ??
-  import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY 
+  ?? import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY;
 
-if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
-  throw new Error('Missing Supabase environment variables (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY)');
+if (!supabaseUrl || !supabaseAnonKey) {
+  console.error('❌ Supabase env vars missing');
 }
 
 // Import the supabase client like this:
 // import { supabase } from "@/integrations/supabase/client";
 
-export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
+export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey, {
   auth: {
     storage: localStorage,
     persistSession: true,
